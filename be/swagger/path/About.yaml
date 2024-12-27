@@ -1,0 +1,315 @@
+paths:
+  /apis/about :
+    get:
+      tags:
+        - About
+      summary: About 소개글 조회
+      description: About 소개글 조회
+      responses:
+        200:
+          description: 소개글 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                          description: 아이디
+                        SORT:
+                          type: integer
+                          description: 정렬순서
+                        TITLE:
+                          type: string
+                          description: 타이틀
+                        SUB_TITLE:
+                          type: string
+                          description: 서브 타이틀
+                        ICON:
+                          type: string
+                          description: 아이콘 경로
+        400:
+          description: 소개글 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 소개글 조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/about/addAbout :
+    post:
+      tags:
+        - About
+      summary: About 소개글 저장
+      description: About 소개글 저장
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sort:
+                  type: integer
+                  description: 정렬순서
+                  required: true  
+                title:
+                  type: string
+                  description: 타이틀
+                  required: true  
+                subTitle:
+                  type: string
+                  description: 서브 타이틀
+                  required: true  
+                icon:
+                  type: string
+                  description: 아이콘 경로
+                  required: true    
+      responses:
+        200:
+          description: 소개글 저장 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object  
+                    properties:
+                      ID:
+                        type: integer
+                        description: 아이디
+                      SORT:
+                        type: integer
+                        description: 정렬순서
+                      TITLE:
+                        type: string
+                        description: 타이틀
+                      SUB_TITLE:
+                        type: string
+                        description: 서브 타이틀
+                      ICON:
+                        type: string
+                        description: 아이콘 경로
+        400:
+          description: 소개글 저장 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string  
+                    description: 저장에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string  
+                    description: 서버 오류 정보 반환
+  /apis/about/findOne :
+    get:
+      tags:
+        - About
+      summary: About 소개글 단건 조회
+      description: About 소개글 단건 조회
+      parameters:
+        - name: id
+          in: query
+          description: 소개글 아이디
+          required: false
+          schema:
+            type: integer
+            default: 1
+      responses:
+        200:
+          description: 소개글 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                        description: 아이디
+                      SORT:
+                        type: integer
+                        description: 정렬순서
+                      TITLE:
+                        type: string
+                        description: 타이틀
+                      SUB_TITLE:  
+                        type: string
+                        description: 서브 타이틀
+                      ICON:
+                        type: string
+                        description: 아이콘 경로
+        400:
+          description: 소개글 조회 실패
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:  
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/about/updateAbout :
+    put:
+      tags:
+        - About
+      summary: About 소개글 수정
+      description: About 소개글 수정
+      requestBody:
+        required: true
+        content:  
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 아이디
+                  required: true
+                sort: 
+                  type: integer
+                  description: 정렬순서
+                  required: true
+                title:
+                  type: string
+                  description: 타이틀
+                  required: true
+                subTitle: 
+                  type: string
+                  description: 서브 타이틀
+                  required: true
+                icon:
+                  type: string
+                  description: 아이콘 경로
+                  required: true
+      responses:  
+        200:
+          description: 소개글 수정 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object  
+                    properties:
+                      ID:
+                        type: integer
+                        description: 아이디
+                      SORT:
+                        type: integer
+                        description: 정렬순서
+                      TITLE:
+                        type: string  
+                      SUB_TITLE:
+                        type: string
+                        description: 서브 타이틀
+                      ICON:
+                        type: string
+                        description: 아이콘 경로
+        400:
+          description: 소개글 수정 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 수정에 실패하였습니다.
+        500:  
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/about/deleteAbout :
+    delete:
+      tags:
+        - About
+      summary: About 소개글 삭제
+      description: About 소개글 삭제
+      parameters:
+        - name: id
+          in: query
+          description: 소개글 아이디
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 소개글 삭제 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object  
+                    properties:
+                      ID:
+                        type: integer
+                        description: 아이디
+        400:
+          description: 소개글 삭제 실패
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 삭제에 실패하였습니다.
+        500:
+          description: 서버 오류    
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환

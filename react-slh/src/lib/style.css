@@ -1,0 +1,1187 @@
+@font-face {
+    font-family: 'Chillax-Variable';
+    src: url('/fonts/Chillax-Variable.woff2') format('woff2'),
+            url('/fonts/Chillax-Variable.woff') format('woff'),
+            url('/fonts/Chillax-Variable.ttf') format('truetype');
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraLight';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;    
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;    
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 700 800 900;
+    font-style: normal;    
+}
+
+body{
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+}
+
+header{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 99;
+    background-color: #0000004f;
+    backdrop-filter: blur(3px);
+    box-shadow: -1px 2px 5px #00000014;
+    transition: padding .5s 0s;
+    color: white;
+}
+
+header > .wrap{
+    transition: all .3s 0s;
+}
+
+header .top{
+    background-color: black;
+}
+
+header .top ul{
+    text-align: right;
+}
+
+header .top ul li{
+    position: relative;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #ffffffa8;
+    transition: color .3s 0s;
+}
+header .top ul li:hover{
+    color: white;
+}
+
+header .top ul li span{
+    padding-right: 3px;
+}
+
+/* header .top ul li a{} */
+
+
+
+/*  theme button  */
+
+.top .mode{
+    display: grid;
+    grid-template-columns: 22px 1fr 22px;
+    grid-gap: 5px;
+}
+label.toggle{
+    position: relative;
+    background-color: #ffffff82;
+    height: 20px;
+    width: 40px;
+    border-radius: 20px;
+}
+label.toggle:after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    width: 16px;
+    height: 16px;
+    background-color: #ffc017;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    transition: all .5s 0s;
+    cursor: pointer;
+}
+label.toggle.view:after{
+    background-color: white;
+    left: calc(100% - 20px);
+}
+.mode img{
+    width: 20px;
+    height: 20px;
+    opacity: .2;
+    transition: opacity .3s 0s;
+}
+
+.mode:has(input[type="checkbox"]:checked) .dark {
+    opacity: 1;
+}
+
+.mode:has(input[type="checkbox"]:not(:checked)) .light {
+    opacity: 1;
+}
+
+header > .wrap{
+    padding: 15px;
+}
+
+header #logo h1{
+    font-size: 0px;
+    background-image: url(/img/logo_row.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px;
+    width: 200px;
+    height: 40px;
+    transition: all .3s 0s;
+}
+
+header #menu{}
+header #menu ul{}
+header #menu ul li{
+    font-family: 'Chillax-Variable';
+    padding: 0px 15px;
+    letter-spacing: 1px;
+    font-size: 19px;
+    transition: all .5s 0s;
+}
+
+header #menu ul li a{
+    position: relative;
+}
+
+header #menu ul li a:after{
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    
+    width: 0%;
+    height: 3px;
+    
+    background-color: #f5f5f5;
+    z-index: -1;
+    transition: all .3s 0s;
+}
+
+header #menu ul li a:hover:after{
+    width: 110%;
+}
+
+header #menu ul #search{
+    display: inline-block;
+    transition: all .5s 0s;
+}
+
+#search .query{
+    max-width: 0px;
+    transition: all .8s 0s;
+    padding: 7px 0px;
+    border: none;
+    border-radius: 20px;
+    line-height: 20px;
+    opacity: .5;
+}
+
+#search:hover .query,
+#search:has(.query:focus) .query{
+    max-width: 300px;
+    padding: 7px 10px;
+    opacity: 1;
+    background-color: var(--main-white-color);
+}
+
+#search .submit{
+    background-color: transparent;
+    line-height: 40px;
+    width: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+#search .submit img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+header .mobile{}
+header .mobile .button{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+}
+header .mobile .button span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 25px;
+    height: 2px;
+    background-color: white;
+}
+
+header .mobile .button span:nth-child(1){
+    transform: translate(-50%,-50%) translateY(-8px);
+}
+header .mobile .button span:nth-child(2){
+    width: 17px;
+    transform: translate(-25%,-50%) translateY(0px);
+}
+header .mobile .button span:nth-child(3){
+    transform: translate(-50%,-50%) translateY(8px);
+}
+
+
+header .mobile .menuBox{
+    width: 380px;
+    height: 100vh;
+    
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    
+    background-color: #222;
+    transform: translateX(100%);
+    transition: transform .5s 0s;
+    
+    z-index: 99999;
+}
+
+header .mobile.view .menuBox{
+    transform: translateX(0%);
+    transition: transform .5s .5s;
+}
+header .mobile .menuBox .logo{
+    padding: 100px 0px 50px;;
+}
+header .mobile .menuBox .logo img{
+    width: 250px;
+}
+
+header .mobile .menuBox #search_mb{
+    padding-left: 25px;
+}
+header .mobile .menuBox #search_mb .query{
+    width: 180px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 30px;
+    line-height: 20px;
+    background-color: #ffffff3d;
+    color: white;
+}
+
+
+header .mobile .menuBox #search_mb .submit{
+    background-color: transparent;
+    line-height: 40px;
+    width: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+header .mobile .menuBox #search_mb .submit img{
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+header .mobile .menuBox .list{
+    padding-top: 35px;
+}
+header .mobile .menuBox .list li{
+    font-family: 'Chillax-Variable';
+    width: 100%;
+    font-size: 20px;
+    padding: 14px 0px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    transition: all .3s 0s;
+}
+header .mobile .menuBox .list li:hover{
+    background-color: #333;
+}
+
+header .mobile .menuBox .list li a{
+    width: 100%;
+}
+
+header .mobile .menuBg{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000cc;
+    cursor: pointer;
+    z-index: 9999;
+    
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1s 0s, transform 0s 1s;
+}
+
+header .mobile.view .menuBg{
+    opacity: 1;
+    transform: translateX(0%);
+    transition: opacity 1s 0s, transform 0s 0s;
+}
+
+
+
+
+
+/* 공통 스타일 */
+section{
+    padding: 60px 0px 100px;
+}
+
+section .component{
+    padding: 100px 0px 60px;
+}
+
+
+section .component .maintext{
+    font-family: 'Chillax-Variable';
+    font-weight: bold;
+    font-size: 8rem;
+    color: var(--main-text-color);
+    opacity: 0;
+    transform: translateY(30px);
+}
+section.view .component .maintext{
+    opacity: 1;
+    transform: translateY(0%);
+    transition: opacity .4s .2s, transform .5s .4s;
+}
+section .component span{
+    font-size: 1.5rem;
+    color: var(--main-text-color);
+    opacity: 0;
+    transform: translateY(30px);
+}
+section.view .component span{
+    opacity: 1;
+    transform: translateY(0%);
+    transition: opacity .4s .3s, transform .5s .5s;
+}
+
+/**/
+
+    
+main #page01{
+    position: relative;
+    padding: 0px;
+}
+main #page01 .video{}
+main #page01 .video video{
+    width: 100%;
+}
+main #page01 .title{
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    text-align: right;
+}
+main #page01 .title .text{
+    font-family: 'Pretendard-ExtraLight';
+    color: white;
+    font-size: 2rem;
+    line-height: 40px;
+    transition: all .3s 0s;
+}
+main #page01 .title .subtext{
+    color: white;
+    font-size: 3.2rem;
+    font-weight: 600;
+    padding-top: 15px;
+    transition: all .3s 0s;
+}
+
+
+main #page02{}
+main #page02 .grid{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    padding: 20px;
+}
+main #page02 .grid li{
+    text-align: left;
+    color: var(--main-text-color);
+    padding: 40px;
+    border-radius: 30px;
+    background-color: #ced5ff73;
+    min-height: 320px;
+    
+    opacity: 0;
+    transform: translateY(30px);
+    
+    transition: opacity .4s .2s, transform .5s .4s;
+}
+
+main #page02 .grid li img{
+    width: 70px;
+    height: 70px;
+}
+main #page02 .grid li .name{
+    font-family: 'Pretendard-ExtraBold';
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px 0px;
+    transition: font-size .3s 0s;
+}
+main #page02 .grid li .subname{
+    font-family: 'Pretendard-Light';
+    font-size: 18px;
+    letter-spacing: -1px;
+    transition: font-size .3s 0s;
+}
+
+main #page02.view .grid li:nth-child(1){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .2s;
+}
+main #page02.view .grid li:nth-child(2){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .3s;
+}
+main #page02.view .grid li:nth-child(3){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .4s;
+}
+main #page02.view .grid li:nth-child(4){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .5s;
+}
+
+
+main #page03{}
+main #page03 .list{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    padding: 60px 0px;
+}
+main #page03 .list > li{
+    color: var(--main-text-color);
+    text-align: left;
+    width: 100%;
+    padding-bottom: 2vw;
+    opacity: 0;
+    overflow: hidden; /*grid 사이즈 오류 해결*/
+    transform: translateY(30px);
+    transition: opacity .4s .2s, transform .5s .4s;
+}
+
+main #page03.view .list li:nth-child(1){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .2s;
+}
+
+main #page03.view .list li:nth-child(2){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .3s;
+}
+
+main #page03.view .list li:nth-child(3){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .4s;
+}
+
+main #page03.view .list li:nth-child(4){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .5s;
+}
+
+main #page03.view .list li:nth-child(5){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .6s;
+}
+
+main #page03.view .list li:nth-child(6){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .7s;
+}
+
+main #page03.view .list li:nth-child(7){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .8s;
+}
+
+main #page03.view .list li:nth-child(8){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .9s;
+}
+
+main #page03.view .list li:nth-child(9){
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 1s;
+}
+
+main #page03 .list li a{
+    width: 100%;
+}
+
+main #page03 .list li a img{
+    width: 100%;
+}
+
+main #page03 .list li a .text{
+    padding: 10px;
+    overflow: hidden;
+    max-width: 500px;
+}
+main #page03 .list li a .text .project{
+    font-size: 1.5rem;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+}
+main #page03 .list li a .text .img{}
+main #page03 .list li a .text .img li{
+    padding: 5px;
+}
+main #page03 .list li a .text .img li img{
+    max-width: 35px;
+    transition: all .3s 0s;
+}
+
+main #page03 .list li a .text .stack{
+    opacity: .7;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: all .3s 0s;
+}
+
+main #page03 .client{
+    padding: 10vw 0px 50px;
+    color: var(--main-text-color);
+}
+main #page03 .client .subtext{
+    font-size: 22px;
+    transition: all .3s 0s;
+}
+main #page03 .client .text{
+    font-size: 3rem;
+    font-weight: bold;
+    transition: all .3s 0s;
+}
+
+main #page03.view .client{
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+main #page03 .animation{
+    position: relative;
+}
+
+main #page03 .banner{
+    position: absolute;
+    white-space: nowrap;
+    transform: translateX(100%);
+    animation: roll 40s linear infinite;
+    animation-direction: alternate;
+    
+    opacity: 0;
+    transition: opacity .4s 1.2s;
+}
+main #page03.view .banner{
+    opacity: 1;
+}
+
+main #page03 .banner li{
+    font-family: 'Pretendard-ExtraBold';
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    line-height: 80px;
+    padding: 0px 20px;
+}
+main #page03 .banner li img{
+    width: 100%;
+    max-width: 140px;
+    max-height: 40px;
+}
+
+@keyframes roll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+    }
+
+
+
+main #page04{
+    padding-top: 100px;
+}
+
+main #page04 .board{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0px;
+    width: 100%;
+    padding-top: 100px;
+}
+
+main #page04 .board .left{
+    padding: 0px 4vw;
+    transition: all .3s 0s;
+}
+main #page04 .board .right{
+    border-left: 1px solid var(--main-text-color);
+    padding: 0px 4vw;
+    transition: all .3s 0s;
+}
+
+#question{
+    text-align: left;
+    padding: 30px 0px 60px;
+    color: var(--main-text-color);
+}
+#question li{
+    font-family: 'Pretendard-ExtraBold';
+    font-size: 25px;
+    padding: 0px 10px;
+    transition: all .3s 0s;
+    
+}
+#question .number{}
+#question .text{}
+#question .memo{
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    opacity: .4;
+}
+
+#answer{}
+#answer .grid{
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 3vw;
+    transition: all .3s 0s;
+}
+
+#answer .grid input[type=text]{
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid var(--main-text-color);
+    padding: 5px 10px;
+    margin-bottom: 30px;
+    line-height: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: all .3s 0s;
+}
+
+#answer {
+    display: block;
+    text-align: left;
+    padding-bottom: 4vw;
+}
+#answer span{
+    width: 100%;
+    font-size: 14px;
+    opacity: .5;
+    padding: 0px 0px 15px 5px;
+    color: var(--main-text-color);
+}
+
+#answer textarea{
+    border: 3px solid var(--main-text-color);
+    width: 100%;
+    height: 200px;
+}
+
+input[type=submit]{
+    width: 130px;
+    line-height: 50px;
+    border-radius: 5px;
+    background-color: var(--main-text-color);
+    margin-top: 6vw;
+}
+
+
+#select{
+    text-align: left;
+    padding-bottom: 4vw;
+}
+#select .checkbox.button{
+    color: var(--main-text-color);
+    border: 3px solid var(--main-text-color);
+    padding: 5px 23px;
+    margin: 3px 0px;
+}
+#select .checkbox.button input[type"checkobx"]{}
+
+#select .radio.button:has(input[type="radio"]:checked),
+#select .checkbox.button:has(input[type="checkbox"]:checked){
+    color:var(--main-white-color);
+    background-color: #4C49FF;
+    border: 3px solid #4C49FF;
+}
+
+
+main #page04 .mob_btn{
+    background-color: var(--main-text-color);
+    color: var(--main-white-color);
+    margin: auto;
+    width: 250px;
+    padding: 15px 0px;
+    font-size: 22px;
+    border-radius: 10px;
+    
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+main #page04.view .mob_btn{
+    opacity: 1;
+    transform: translateY(0%);
+    transition: opacity .4s .4s, transform .5s .6s;
+}
+
+main #page04 .o1000{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .5s .5s, transform .6s .7s;
+}
+
+main #page04.view .o1000{
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+main #page05{
+    padding: 11vw 0px 60px;
+}
+
+main #page05 .component .maintext{
+    font-family: 'Pretendard-ExtraBold';
+    font-size: 4rem;
+}
+
+main .map{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0px;
+    width: 100%;
+    border: 1px solid #e7e7e7;
+}
+main .map .left{
+    width: 100%;
+    height: 500px;
+    max-width: 1000px;
+}
+
+main .map .right{
+    align-content: center;
+    background-color: #f5f5f5;
+}
+main .map .right .address{
+    text-align: left;
+    padding-left: 3vw;
+    color: #222;
+}
+main .map .right .address .text{
+    font-size: 3rem;
+    font-weight: bold;
+    padding-bottom: 1vw;
+    transition: all .3s 0s;
+}
+main .map .right .address .subtext{
+    font-size: 20px;
+    opacity: .6;
+    transition: all .3s 0s;
+}
+
+footer{
+    padding: 60px 0px;
+    background-color: black;
+}
+
+footer .flex{
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 220px;
+    padding: 0px 2vw;
+}
+
+footer .logo{}
+
+footer .logo img{
+    width: 250px;
+}
+
+footer .text{}
+
+footer .list{
+    color: #f5f5f5;
+    text-align: left;
+    font-family: 'Pretendard-ExtraLight';
+    font-weight: 300;
+    opacity: .7;
+}
+footer .list li{
+    padding-right: 30px;
+    position: relative;
+    transition: all .3s 0s;
+}
+footer .list li:after{
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 12px;
+    background-color: #ffffff82;
+    top: 6px;
+    right: 15px;
+}
+
+footer .list li:last-child:after{
+    display: none;
+}
+
+@media only screen and (max-width:1600px){
+    
+}
+
+@media only screen and (max-width:1500px){
+    
+}
+
+@media only screen and (max-width:1400px){
+    main #page01 .title{
+        transform: translate(-35%, -50%);
+    }
+    
+    main #page01 .title .text{
+        font-size: 1.7rem;
+        line-height: 33px;
+    }
+    main #page01 .title .subtext{
+        font-size: 2.8rem;
+        padding-top: 10px;
+    }
+    main #page03 .list{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    main #page03 .client .subtext{
+        font-size: 20px;
+    }
+    main #page03 .client .text{
+        font-size: 2.2rem;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+    
+    #question li{
+        font-size: 20px;
+    }
+    #question .memo{
+        font-size: 14px;
+    }
+    #answer form{
+        grid-gap: 2vw;
+    }
+    #answer form input[type=text]{
+        line-height: 20px;
+        font-size: 14px;
+    }
+    #select .checkbox.button{
+        padding:  0px 15px;
+    }
+}
+
+@media only screen and (max-width:1300px){
+    main #page02 .grid{
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 15px;
+    }
+    
+}
+
+@media only screen and (max-width:1200px){
+    main #page01 .title{
+        transform: translate(-30%, -50%);
+    }
+    
+    main #page01 .title .text{
+        font-size: 1.5rem;
+        line-height: 30px;
+    }
+    main #page01 .title .subtext{
+        font-size: 2.5rem;
+        padding-top: 10px;
+    }
+}
+
+
+@media only screen and (max-width:1100px){
+    footer .flex{
+        align-items: center;
+    }
+    footer .list{
+        text-align: center;
+    }
+}
+
+
+@media only screen and (max-width:1000px){
+    header{
+        padding: 0px;
+    }
+
+    header #menu ul li{
+        font-size: 15px;
+    }
+    header #menu ul #search{
+        padding: 0px;
+    }
+    #search:hover .query, #search:has(.query:focus) .query{
+        max-width: 150px;
+    }
+    #search .submit{
+        line-height: 30px;
+        width: 25px;
+    }
+    
+    main #page04 .board .left,
+    main #page04 .board .right{
+        padding: 0px 2vw;
+    }
+    
+    main .map{
+        grid-template-columns: 1fr;
+        border: none;
+    }
+    main .map .left{
+        max-height: 300px;
+    }
+    main .map .right{
+        order: -1;
+    }
+    main .map .right .address{
+        text-align: center;
+        padding: 5vw;
+    }
+    footer .logo img{
+        width: 200px;
+    }
+    footer .list li{
+        width: 100%;
+        padding:0px;
+    }
+    footer .list li:after{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width:800px){
+    section .component .maintext{
+        font-size: 5rem;
+    }
+    main #page01 .video video{
+        width: auto;
+        height: 600px;
+    }
+    main #page01 .title{
+        text-align: left;
+        left: 28%;
+    }
+    
+    main #page02 .grid li{
+        text-align: center;
+    }
+    
+    main #page02 .grid li img {
+        width: 50px;
+        height: 50px;
+    }
+    main #page02 .grid li .name{
+        font-size: 26px;
+    }
+    
+    main #page02 .grid li .subname{
+        font-size: 17px;
+    }
+    
+    main #page03 .list li a .text .img li img{
+        max-width: 25px;
+    }
+    main #page03 .list li a .text .stack{
+        font-size: 15px;
+    }
+}
+
+
+
+@media only screen and (max-width:700px){
+    header #logo h1{
+        background-size: 165px;
+        width: 165px;
+    }
+    
+    main #page01 .title .text{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    main #page01 .title .subtext{
+        font-size: 24px;
+        padding-top: 10px;
+    }
+    main #page03 .list{
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+        padding: 10px 10px 60px;
+    }
+    main #page03 .client{
+        padding: 10vw 0px 30px;
+    }
+    main #page03 .client .subtext{
+        font-size: 16px;
+    }
+    main #page03 .client .text{
+        font-size: 27px;
+    }
+    
+    footer .list li{
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width:600px){
+    main #page02 .grid{
+        grid-template-columns: 1fr;
+    }
+    main #page02 .grid li{
+        min-height: 0px;
+    }
+    main .map .right .address .text{
+        font-size: 22px;
+    }
+    main .map .right .address .subtext{
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width:500px){
+    header .mobile .menuBox{
+        width: 300px;
+    }
+    header .mobile .menuBox .logo img{
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width:400px){
+    header > .wrap{
+        padding: 0px 8px;
+    }
+    
+    header #logo h1{
+        height: 50px;
+    }
+    
+    header .mobile .menuBox{
+        width: 250px;
+    }
+    header .mobile .menuBox .logo img{
+        width: 150px;
+    }
+
+    section .component span{
+        font-size: 14px;
+    }
+    
+    main #page01 .title .text{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    main #page01 .title .subtext{
+        font-size: 20px;
+        padding-top: 10px;
+    }
+    
+    main #page02 .grid li img{
+        width: 40px;
+        height: 40px;
+    }
+    
+    main #page02 .grid li .name{
+        font-size: 22px;
+    }
+    
+    main #page02 .grid li .subname{
+        font-size: 15px;
+    }
+    
+    main #page03 .client .subtext{
+        font-size: 14px;
+    }
+    main #page03 .client .text{
+        font-size: 22px;
+    }
+    main #page03 .banner li{
+        font-size: 16px;
+    }
+    main #page03 .banner li img{
+        height: 20px;
+    }
+    main #page04 .mob_btn{
+        width: 200px;
+    }
+    main .map .right .address .text{
+        font-size: 20px;
+    }
+    main .map .right .address .subtext{
+        font-size: 14px;
+    }
+    footer .logo img{
+        width: 200px;
+    }
+    footer .list li{
+        font-size: 12px;
+    }
+    
+}
+
+main #page03.view .list li {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity .4s, transform .5s;
+    transition-delay: calc(0.1s * var(--item-index));
+}

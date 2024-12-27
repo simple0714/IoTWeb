@@ -1,0 +1,279 @@
+paths:
+  /apis/contact/findList :
+    get:
+      tags:
+        - Contact
+      summary: 프로젝트 요청 전체조회
+      description: 프로젝트 요청 전체조회
+      parameters:
+        - name: page
+          in: query
+          description: 페이지 번호 (디폴트 1)
+        - name: size
+          in: query
+          description: 페이지 사이즈 (디폴트 50)
+        - name: userNm
+          in: query
+          description: 사용자명
+        - name: phone
+          in: query
+          description: 전화번호
+        - name: email
+          in: query
+          description: 이메일
+      responses:
+        200:
+          description: 프로젝트 요청 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                          description: 프로젝트 요청 번호
+                        ORG_NM:
+                          type: string
+                          description: 조직명
+                        USER_NM:
+                          type: string
+                          description: 요청자명
+                        PHONE:
+                          type: string
+                          description: 연락처
+                        EMAIL:
+                          type: string
+                          description: 이메일
+                        SERVICE_CD:
+                          type: object
+                          description: 요청 서비스 코드 (object 형태로)
+                        BUDGET:
+                          type: string
+                          description: 예산
+                        SCHEDULE:
+                          type: string
+                          description: 일정
+                        PROJECT_INFO:
+                          type: text
+                          description: 설명
+                        CREATE_AT:
+                          type: date
+                          description: 요청일
+                        UPDATE_AT:
+                          type: date
+                          description: 수정일
+        400:
+          description: 프로젝트 요청 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 조회에 실패하였습니다.
+                  message:
+                    type: string
+                    description: 조회된 데이터가 없습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/contact/findOne :
+    get:
+      tags:
+        - Contact
+      summary: 프로젝트 요청 단일조회
+      description: 프로젝트 요청 단일조회
+      parameters:
+        - name: id
+          in: query
+          description: 프로젝트 요청 번호
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 프로젝트 요청 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                        description: 프로젝트 요청 번호
+                      ORG_NM:
+                        type: string
+                        description: 조직명
+                      USER_NM:
+                        type: string
+                        description: 요청자명 
+                      PHONE:
+                        type: string
+                        description: 연락처
+                      EMAIL:
+                        type: string
+                        description: 이메일
+                      SERVICE_CD:
+                        type: object
+                        description: 요청 서비스 코드 (object 형태로) 
+                      BUDGET:
+                        type: string
+                        description: 예산
+                      SCHEDULE:
+                        type: string
+                        description: 일정
+                      PROJECT_INFO:
+                        type: text
+                        description: 설명
+                      CREATE_AT:
+                        type: date
+                        description: 요청일
+                      UPDATE_AT:
+                        type: date
+                        description: 수정일
+        400:
+          description: 프로젝트 요청 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 조회에 실패하였습니다. 
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환  
+  /apis/contact/postContact:
+    post:
+      tags:
+        - Contact
+      summary: 프로젝트 요청 생성
+      description: 프로젝트 요청 생성
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orgNm:
+                  type: string
+                  description: 조직명
+                name:
+                  type: string
+                  description: 요청자명
+                phone:
+                  type: string
+                  description: 연락처
+                email:
+                  type: string
+                  description: 이메일
+                service:
+                  type: text
+                  description: 요청 서비스 코드 ex) ["SRC01","SRC02"]
+                budget:
+                  type: string
+                  description: 예산
+                schedule:
+                  type: string
+                  description: 일정 ex) YYYYMMDD 20241011
+                description:
+                  type: string
+                  description: 설명
+              required:
+                - orgNm
+                - name
+                - phone
+                - email
+                - service
+                - budget
+                - schedule
+                - description
+      responses:
+        200:
+          description: 프로젝트 요청 생성 성공
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                        description: 프로젝트 요청 번호 (자동 생성)
+                      ORG_NM:
+                        type: string  
+                        description: 조직명
+                      USER_NM:
+                        type: string
+                        description: 요청자명
+                      PHONE:
+                        type: string
+                        description: 연락처
+                      EMAIL:  
+                        type: string
+                        description: 이메일
+                      SERVICE_CD:
+                        type: object
+                        description: 요청 서비스 코드 (object 형태로)
+                      BUDGET:
+                        type: string
+                        description: 예산
+                      SCHEDULE:
+                        type: string
+                        description: 일정
+                      PROJECT_INFO:
+                        type: text
+                        description: 설명
+                      CREATE_AT:
+                        type: date
+                        description: 요청일
+                      UPDATE_AT:
+                        type: date
+                        description: 수정일
+        400:
+          description: 프로젝트 요청 생성 실패
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 생성에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환

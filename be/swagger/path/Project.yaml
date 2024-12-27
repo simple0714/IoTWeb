@@ -1,0 +1,437 @@
+paths:
+  /apis/project/listAll :
+    get:
+      tags:
+        - Project
+      summary: 프로젝트 리스트 전체조회
+      description: 프로젝트 리스트 전체조회
+      parameters:
+        - name: page
+          in: query
+          description: 페이지 번호 (디폴트 1)
+        - name: size
+          in: query
+          description: 페이지 사이즈 (디폴트 50)
+        - name: title
+          in: query
+          description: 프로젝트 타이틀
+      responses:
+        200:
+          description: 프로젝트 리스트 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        count:
+                          type: integer
+                          description: 전체 프로젝트 수
+                        currentPage:
+                          type: integer
+                          description: 현재 페이지
+                        projectList:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            PROJECT_NB:
+                              type: integer
+                              description: 프로젝트 번호
+                            TITLE:
+                              type: string
+                              description: 프로젝트 타이틀
+                            SUB_TITLE:
+                              type: string
+                              description: 프로젝트 서브 타이틀
+                            PROJECT_IMG:
+                              type: string
+                              description: 프로젝트 썸네일
+                            STACK:
+                              type: json
+                              description: 프로젝트 기술 스택
+                            PROJECT_INFO:
+                              type: string
+                              description: 프로젝트 설명
+                            CREATE_AT:
+                              type: date
+                              description: 프로젝트 생성일
+                            UPDATE_AT:
+                              type: date
+                              description: 프로젝트 수정일
+        400:
+          description: 프로젝트 리스트 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 프로젝트 정보조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/project/findOne :
+    get:
+      tags:
+        - Project
+      summary: 프로젝트 단건 조회
+      description: 프로젝트 단건 조회
+      parameters:
+        - name: projectNb
+          in: query
+          description: 프로젝트 번호
+          required: true
+      responses:
+        200:
+          description: 프로젝트 정보 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      projectInfo:
+                        type: object
+                        properties:
+                          ID:
+                            type: integer
+                          PROJECT_NB:
+                            type: integer
+                            description: 프로젝트 번호
+                          TITLE:
+                            type: string
+                            description: 프로젝트 타이틀
+                          SUB_TITLE:
+                            type: string
+                            description: 프로젝트 서브 타이틀
+                          PROJECT_IMG:
+                            type: string
+                            description: 프로젝트 썸네일
+                          STACK:
+                            type: json  
+                            description: 프로젝트 기술 스택
+                          PROJECT_INFO:
+                            type: string
+                            description: 프로젝트 설명
+                          CREATE_AT:
+                            type: date
+                            description: 프로젝트 생성일
+                          UPDATE_AT:
+                            type: date
+                            description: 프로젝트 수정일  
+                      projectFiles:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            PROJECT_NB:
+                              type: integer
+                              description: 프로젝트 번호
+                            PROJECT_IMG:
+                              type: string
+                              description: 이미지 파일 경로
+                            SORT:
+                              type: integer
+                              description: 이미지 파일 인덱스
+        400:
+          description: 프로젝트 정보 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 프로젝트 정보 조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환  
+  /apis/project/addProject :
+    post:
+      tags:
+        - Project
+      summary: 프로젝트 정보 추가
+      description: 프로젝트 정보 추가
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 프로젝트 타이틀
+                subTitle:
+                  type: string    
+                projectImg:
+                  type: string
+                  description: 프로젝트 썸네일
+                stack:
+                  type: json
+                  description: 프로젝트 기술 스택
+                projectInfo:
+                  type: text
+                  description: 프로젝트 설명
+                files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        description: 이미지 파일 경로
+                      sort:
+                        type: integer
+                        description: 이미지 파일 인덱스
+                  description: 저장된 이미지 파일 정보
+      responses:
+        200:
+          description: 프로젝트 정보 추가 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo: 
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      PROJECT_NB:
+                        type: integer
+                        description: 프로젝트 번호
+                      TITLE:
+                        type: string
+                        description: 프로젝트 타이틀
+                      SUB_TITLE:
+                        type: string
+                        description: 프로젝트 서브 타이틀
+                      PROJECT_IMG:
+                        type: string
+                        description: 프로젝트 썸네일
+                      STACK:
+                        type: json  
+                        description: 프로젝트 기술 스택
+                      PROJECT_INFO:
+                        type: text
+                        description: 프로젝트 설명
+                      CREATE_AT:
+                        type: date
+                        description: 프로젝트 생성일
+                      UPDATE_AT:
+                        type: date
+                        description: 프로젝트 수정일
+        400:
+          description: 프로젝트 정보 추가 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:  
+                    type: string
+                    description: 프로젝트 정보 추가에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/project/updateProject :
+    put:
+      tags:
+        - Project
+      summary: 프로젝트 정보 수정
+      description: 프로젝트 정보 수정
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectNb:
+                  type: integer
+                  description: 프로젝트 번호
+                title:
+                  type: string
+                  description: 프로젝트 타이틀
+                subTitle:
+                  type: string
+                  description: 프로젝트 서브 타이틀
+                projectImg:
+                  type: string
+                  description: 프로젝트 썸네일
+                stack:
+                  type: json
+                  description: 프로젝트 기술 스택
+                projectInfo:
+                  type: text
+                  description: 프로젝트 설명
+                files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      PROJECT_IMG:
+                        type: string
+                        description: 이미지 파일 경로
+                      SORT:
+                        type: integer
+                        description: 이미지 파일 인덱스
+                  description: 저장된 이미지 파일 정보
+
+      responses:
+        200:
+          description: 프로젝트 정보 수정 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      PROJECT_NB:
+                        type: integer
+                        description: 프로젝트 번호
+                      TITLE:
+                        type: string
+                        description: 프로젝트 타이틀
+                      SUB_TITLE:
+                        type: string
+                        description: 프로젝트 서브 타이틀
+                      PROJECT_IMG:
+                        type: string
+                        description: 프로젝트 썸네일
+                      STACK:
+                        type: json  
+                        description: 프로젝트 기술 스택
+                      PROJECT_INFO:
+                        type: text
+                        description: 프로젝트 설명
+                      CREATE_AT:
+                        type: date
+                        description: 프로젝트 생성일
+                      UPDATE_AT:
+                        type: date
+                        description: 프로젝트 수정일
+        400:
+          description: 프로젝트 정보 수정 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 프로젝트 정보 수정에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/project/deleteProject :
+    delete:
+      tags:
+        - Project
+      summary: 프로젝트 정보 삭제
+      description: 프로젝트 정보 삭제
+      parameters:
+        - name: projectNb
+          in: query
+          description: 프로젝트 번호
+          required: true
+      responses:
+        200:
+          description: 프로젝트 정보 삭제 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer 
+                      PROJECT_NB:
+                        type: integer
+                        description: 프로젝트 번호
+                      TITLE:
+                        type: string
+                        description: 프로젝트 타이틀
+                      SUB_TITLE:
+                        type: string
+                        description: 프로젝트 서브 타이틀 
+                      PROJECT_IMG:
+                        type: string
+                        description: 프로젝트 썸네일
+                      STACK:
+                        type: json
+                        description: 프로젝트 기술 스택
+                      PROJECT_INFO:
+                        type: text  
+                      CREATE_AT:
+                        type: date
+                        description: 프로젝트 생성일
+                      UPDATE_AT:
+                        type: date
+                        description: 프로젝트 수정일
+        400:
+          description: 프로젝트 정보 삭제 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 프로젝트 정보 삭제에 실패하였습니다.
+        500:
+          description: 서버 오류  
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  

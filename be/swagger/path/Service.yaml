@@ -1,0 +1,315 @@
+paths:
+  /apis/service/list :
+    get:
+      tags:
+        - Service
+      summary: 서비스 목록 조회
+      description: 서비스 목록을 조회합니다.
+      parameters:
+        - name: useYn
+          in: query
+          description: 사용 여부(1: 사용, 0: 사용안함 필수값 아님)
+          type: integer
+          required: false
+          default: 1
+      responses:
+        200:
+          description: 서비스 목록 조회 성공
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                ID:
+                  type: integer
+                  description: 서비스 ID
+                SERVICE_CD:
+                  type: string
+                  description: 서비스 코드
+                SERVICE_NM:
+                  type: string
+                  description: 서비스 이름
+                SORT:
+                  type: string
+                  description: 정렬
+                USE_YN:
+                  type: integer
+                  description: 사용 여부
+                CREATED_AT:
+                  type: date
+                  description: 생성일
+                UPDATED_AT:
+                  type: date
+                  description: 수정일
+        400:
+          description: 서비스 목록 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서비스 목록 조회에 실패하였습니다.
+        500:
+          description: 서버 오류  
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/service/findOne :
+    get:
+      tags:
+        - Service
+      summary: 서비스 정보 조회
+      description: 서비스 정보를 조회합니다.
+      parameters:
+        - name: serviceCd
+          in: query
+          description: 서비스 코드
+          type: string
+          required: true
+      responses:
+        200:
+          description: 서비스 정보 조회 성공
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+                description: 서비스 ID
+              SERVICE_CD:
+                type: string
+                description: 서비스 코드
+              SERVICE_NM:
+                type: string
+                description: 서비스 이름
+              SORT: 
+                type: string
+                description: 정렬
+              USE_YN:
+                type: integer
+                description: 사용 여부
+              CREATED_AT:
+                type: date
+                description: 생성일 
+              UPDATED_AT:
+                type: date
+                description: 수정일
+        400:
+          description: 서비스 정보 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서비스 정보 조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환                    
+  /apis/service/addService :
+    post:
+      tags:
+        - Service
+      summary: 서비스 정보 추가
+      description: 서비스 정보를 추가합니다.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serviceNm:
+                  type: string
+                  description: 서비스 이름
+      responses:
+        200:
+          description: 서비스 정보 추가 성공
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+                description: 서비스 ID
+              SERVICE_CD:
+                type: string
+                description: 서비스 코드
+              SERVICE_NM:
+                type: string
+                description: 서비스 이름
+              SORT:
+                type: string
+                description: 정렬
+              USE_YN:
+                type: integer
+                description: 사용 여부
+              CREATED_AT:
+                type: date
+                description: 생성일
+              UPDATED_AT:
+                type: date
+                description: 수정일
+        400:
+          description: 서비스 정보 추가 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서비스 정보 추가에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/service/updateService :
+    put:
+      tags:
+        - Service
+      summary: 서비스 정보 수정
+      description: 서비스 정보를 수정합니다.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serviceCd:
+                  type: string
+                  description: 서비스 코드
+                serviceNm:
+                  type: string  
+                sort:
+                  type: string
+                  description: 정렬
+                useYn:
+                  type: integer
+                  description: 사용 여부
+      responses:
+        200:
+          description: 서비스 정보 수정 성공
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+                description: 서비스 ID
+              SERVICE_CD: 
+                type: string
+                description: 서비스 코드
+              SERVICE_NM:
+                type: string
+                description: 서비스 이름
+              SORT:
+                type: string
+                description: 정렬 
+              USE_YN:
+                type: integer
+                description: 사용 여부
+              CREATED_AT:
+                type: date
+                description: 생성일
+              UPDATED_AT:
+                type: date  
+        400:
+          description: 서비스 정보 수정 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string  
+                    description: 서비스 정보 수정에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/service/deleteService : 
+    delete:
+      tags:
+        - Service
+      summary: 서비스 정보 삭제
+      description: 서비스 정보를 삭제합니다.
+      parameters:
+        - name: serviceCd
+          in: query
+          description: 서비스 코드
+          type: string
+          required: true
+      responses:
+        200:
+          description: 서비스 정보 삭제 성공
+          schema:
+            type: object
+            properties:
+              ID:
+                type: integer
+                description: 서비스 ID
+              SERVICE_CD:
+                type: string
+                description: 서비스 코드
+              SERVICE_NM:
+                type: string
+                description: 서비스 이름
+              SORT:
+                type: string
+                description: 정렬
+              USE_YN:
+                type: integer
+                description: 사용 여부
+              CREATED_AT:
+                type: date
+                description: 생성일
+              UPDATED_AT:
+                type: date
+                description: 수정일
+        400:
+          description: 서비스 정보 삭제 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서비스 정보 삭제에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+    

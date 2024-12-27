@@ -1,0 +1,170 @@
+paths:
+  /apis/stack :
+    get:
+      tags:
+        - Stack
+      summary: Stack 조회
+      description: Stack 조회
+      responses:
+        200:
+          description: Stack 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                          description: 아이디
+                        STACK_NM:
+                          type: string
+                          description: 스택명
+                        ICON:
+                          type: string
+                          description: 아이콘 경로
+        400:
+          description: Stack 조회 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Stack 조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/stack/addStack:
+    post:
+      tags:
+        - Stack
+      summary: Stack 추가
+      description: Stack 추가
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 스택명
+                url:
+                  type: string
+                  description: 아이콘 경로
+      responses:
+        200:
+          description: Stack 추가 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                        description: 아이디
+                      STACK_NM:
+                        type: string
+                        description: 스택명
+                      ICON:
+                        type: string
+                        description: 아이콘 경로
+        400:
+          description: Stack 추가 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Stack 추가에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/stack/updateStack:
+    put:
+      tags:
+        - Stack
+      summary: Stack 수정
+      description: Stack 수정
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 아이디
+                name:
+                  type: string
+                  description: 스택명
+                url:
+                  type: string
+                  description: 아이콘 경로
+      responses:
+        200:
+          description: Stack 수정 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                        description: 아이디
+                      STACK_NM:
+                        type: string
+                        description: 스택명
+                      ICON:
+                        type: string
+                        description: 아이콘 경로
+        400:
+          description: Stack 수정 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Stack 수정에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환

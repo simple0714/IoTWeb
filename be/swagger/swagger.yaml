@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  title: Softlab-hum API
+  description: 소프트랩흄 홈페이지 API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3001
+tags:
+  - name: About
+    description: 소개글 API
+  - name: Project
+    description: 프로젝트 API
+  - name: Partner
+    description: 파트너 API
+  - name: Service
+    description: 프로젝트 요청 구분 API
+  - name: Contact
+    description: 프로젝트 요청 API
+  - name: Admin
+    description: 관리자페이지 API
+  - name: file
+    description: 파일 API
+  - name: Stack
+    description: 기술스택 API

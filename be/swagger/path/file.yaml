@@ -1,0 +1,112 @@
+paths:
+  /apis/fileUpload :
+    post:
+      tags:
+        - file
+      summary: 파일 업로드 (단일)
+      description: 파일을 업로드합니다.
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          description: 업로드할 파일 정보
+          required: true
+          type: file
+      responses:
+        200:
+          description: 파일 업로드 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: 성공 여부
+                  message:
+                    type: string
+                    description: 파일이 성공적으로 업로드되었습니다.
+                  url:
+                    type: string
+                    description: 업로드된 파일 URL
+        400:
+          description: 파일 업로드 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 파일 업로드에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류
+  /apis/multiFileUpload :
+    post:
+      tags:
+        - file
+      summary: 파일 업로드 (멀티)
+      description: 파일을 다중 업로드합니다.
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: files
+          in: formData
+          description: 업로드할 파일 정보
+          required: true
+          type: array
+          items:
+            type: file
+      responses:
+        200:
+          description: 파일 업로드 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: 성공 여부
+                  message:
+                    type: string
+                    description: 파일이 성공적으로 업로드되었습니다.
+                  files:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        description: 업로드된 파일 URL
+                      sort:
+                        type: integer
+                        description: 정렬순서
+        400:
+          description: 파일 업로드 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 파일 업로드에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류
+    

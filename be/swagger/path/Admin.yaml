@@ -1,0 +1,306 @@
+paths:
+  /apis/admin/signUp :
+    post:
+      tags:
+        - Admin
+      summary: 관리자 회원가입
+      description: 관리자 회원가입 요청
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: 아이디
+                pw:
+                  type: string
+                  description: 비밀번호
+                name: 
+                  type: string
+                  description: 이름
+                email:
+                  type: string
+                  description: 이메일
+                phone:
+                  type: string
+                  description: 전화번호
+              required:
+                - id
+                - pw
+                - name
+                - email
+                - phone
+      responses:
+        200: 
+          description: 관리자 회원가입 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 회원가입 성공 메시지
+        400:
+          description: 관리자 회원가입 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 회원가입 실패 메시지
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+
+  /apis/admin/login :
+    get:
+      tags:
+        - Admin
+      summary: 관리자 로그인
+      description: 관리자 로그인 요청
+      parameters:
+        - name: id
+          in: query
+          description: 아이디
+          required: true
+          schema:
+            type: string
+        - name: pw
+          in: query
+          description: 비밀번호
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: 관리자 로그인 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ADMIN_ID:
+                        type: string
+                        description: 아이디
+                      ADMIN_NM:
+                        type: string
+                        description: 이름
+                      ADMIN_EMAIL:
+                        type: string
+                        description: 이메일
+                      ADMIN_PHONE:
+                        type: string
+                        description: 전화번호
+                      ROLE:
+                        type: string
+                        description: 권한
+                  message:
+                    type: string
+                    description: 로그인 성공 메시지
+        400:
+          description: 관리자 로그인 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 로그인 실패 메시지
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+
+  /apis/admin/findId :          
+    get:
+      tags:
+        - Admin
+      summary: 관리자 아이디 찾기
+      description: 관리자 아이디 찾기 요청
+      parameters:
+        - name: name
+          in: query
+          description: 이름
+          required: true
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: 이메일
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: 관리자 아이디 찾기 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ADMIN_ID:
+                        type: string
+                        description: 아이디
+                  message:
+                    type: string
+                    description: 아이디 찾기 성공 메시지
+        400:
+          description: 관리자 아이디 찾기 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 아이디 찾기 실패 메시지
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+
+  /apis/admin/findPw :
+    get:
+      tags:
+        - Admin
+      summary: 관리자 비밀번호 찾기
+      description: 관리자 비밀번호 찾기 요청
+      parameters:
+        - name: id
+          in: query
+          description: 아이디
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: 이름
+          required: true
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: 이메일
+          required: true
+          schema:
+            type: string
+        - name: phone
+          in: query
+          description: 전화번호
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: 관리자 비밀번호 찾기 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: SUCCESS
+        400:
+          description: 관리자 비밀번호 찾기 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 비밀번호 찾기 실패 메시지
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+
+  /apis/admin/changePw :
+    put:
+      tags:
+        - Admin
+      summary: 관리자 비밀번호 변경
+      description: 관리자 비밀번호 변경 요청
+      parameters:
+        - name: id
+          in: query
+          description: 아이디
+          required: true
+          schema:
+            type: string
+        - name: pw
+          in: query
+          description: 비밀번호
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: 관리자 비밀번호 변경 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 비밀번호 변경 성공 메시지
+        400:
+          description: 관리자 비밀번호 변경 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 비밀번호 변경 실패 메시지
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환

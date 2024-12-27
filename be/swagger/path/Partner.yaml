@@ -1,0 +1,281 @@
+paths:
+  /apis/partner/list :
+    get:
+      tags:
+        - Partner
+      summary: 파트너 리스트 조회
+      description: 파트너 리스트 조회
+      parameters:
+        - name: page
+          in: query
+          description: 페이지 번호 (디폴트 1)
+        - name: size
+          in: query
+          description: 페이지 사이즈 (디폴트 50)
+        - name: name
+          in: query
+          description: 파트너명
+        - name: useYn
+          in: query
+          description: 사용여부 (0: 미사용, 1: 사용)
+      responses:
+        200:
+          description: 파트너 정보 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                        PARTNER_NM:
+                          type: string
+                          description: 파트너 이름
+                        PARTNER_IMG:
+                          type: string
+                          description: 파트너 이미지
+                        PARTNER_URL:
+                          type: string
+                          description: 파트너 링크
+                        SORT:
+                          type: integer
+                          description: 정렬순서
+                        USE_YN:
+                          type: string
+                          description: 사용여부
+        400:
+          description: 파트너정보 조회 실패
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  error:
+                    type: string
+                    description: 파트너 리스트 조회에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/partner/add : 
+    post:
+      tags:
+        - Partner
+      summary: 파트너 등록
+      description: 파트너 등록
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                partnerNm:
+                  type: string
+                  description: 파트너 이름
+                imgUrl:
+                  type: string
+                  description: 파트너 이미지
+                partnerUrl:
+                  type: string
+                  description: 파트너 링크
+      responses:
+        200:
+          description: 파트너 등록 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      PARTNER_NM:
+                        type: string
+                        description: 파트너 이름
+                      PARTNER_IMG:
+                        type: string
+                        description: 파트너 이미지
+                      PARTNER_URL:
+                        type: string
+                        description: 파트너 링크
+                      SORT:
+                        type: integer
+                        description: 정렬순서
+                      USE_YN:
+                        type: string
+                        description: 사용여부
+        400:
+          description: 파트너 등록 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 파트너 등록에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/partner/update :
+    put:
+      tags:
+        - Partner
+      summary: 파트너 수정
+      description: 파트너 수정
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 파트너 번호
+                partnerNm:
+                  type: string
+                  description: 파트너 이름
+                imgUrl:
+                  type: string
+                  description: 파트너 이미지
+                partnerUrl:
+                  type: string
+                  description: 파트너 링크
+                sort:
+                  type: integer
+                  description: 정렬순서
+                useYn:
+                  type: string
+                  description: 사용여부
+      responses:
+        200:
+          description: 파트너 수정 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      PARTNER_NM:
+                        type: string
+                        description: 파트너 이름
+                      PARTNER_IMG:
+                        type: string
+                        description: 파트너 이미지
+                      PARTNER_URL:
+                        type: string
+                        description: 파트너 링크
+                      SORT:
+                        type: integer
+                        description: 정렬순서
+                      USE_YN:
+                        type: string
+                        description: 사용여부
+        400:
+          description: 파트너 수정 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 파트너 수정에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+  /apis/partner/delete :
+    delete:
+      tags:
+        - Partner
+      summary: 파트너 삭제
+      description: 파트너 삭제
+      parameters:
+        - name: id
+          in: query
+          description: 파트너 번호
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 파트너 삭제 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataInfo:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      PARTNER_NM:
+                        type: string
+                        description: 파트너 이름
+                      PARTNER_IMG:
+                        type: string
+                        description: 파트너 이미지
+                      PARTNER_URL:
+                        type: string
+                        description: 파트너 링크
+                      SORT:
+                        type: integer
+                        description: 정렬순서
+                      USE_YN:
+                        type: string
+                        description: 사용여부
+        400:
+          description: 파트너 삭제 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 파트너 삭제에 실패하였습니다.
+        500:
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 서버 오류 정보 반환
+                    
