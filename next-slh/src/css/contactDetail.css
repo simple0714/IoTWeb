@@ -1,0 +1,20 @@
+#answer li {
+    width: 100%;
+}
+.custom-grid {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+}
+#answer li input {
+    width: 100%;
+}
+
+.custom-grid2 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+}

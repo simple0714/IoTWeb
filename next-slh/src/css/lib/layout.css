@@ -1,0 +1,505 @@
+@charset "UTF-8";
+
+
+main .section{
+    padding: 40px 0px 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+main .section[tab]{ display: none; }
+main .section[tab].active{ display: block; }
+
+/* main .section{}
+main .section .wrap{} */
+
+
+main .section.left .wrap,
+main .section.right .wrap,
+main .section.up .wrap{
+    opacity: 0;
+    transform: translateY(20%);
+    transition: all .5s 0s;
+}
+
+main .section.left .wrap{
+    transform: translateX(-20%);
+}
+
+main .section.right .wrap{
+    transform: translateX(20%);
+}
+
+main .section.view .wrap{
+    opacity: 1;
+    transform: none;
+}
+
+
+main .section .wrap > .title{
+    margin-bottom: 40px;
+    text-align: left;
+}
+main .section .wrap > .title .name{
+    font-size: 2rem;
+    font-weight: bold;
+    color:var(--main-black-color);
+}
+main .section .wrap > .title .sub{
+    color:var(--main-t01-color); 
+}
+
+
+
+
+
+footer{
+    padding: 20px 0px 100px;
+    margin-top: 60px;
+}
+
+input{
+    padding: 0px 15px;
+    border: 0px;
+    line-height: 40px;
+    background-color: var(--main-white-color);
+    color: var(--main-black-color);
+    transition: all .5s 0s;
+    opacity: .9;
+}
+
+
+input[type="file"],
+input[type="text"],
+input[type="password"]{
+    background-color: var(--main-bar-color);
+    line-height: 42px;
+    opacity: .7;
+}
+
+
+input[type="text"]:focus{
+    opacity: 1;
+}
+
+
+input:hover,
+input:focus{
+    opacity: 1;
+}
+
+input[type="button"],
+input[type="submit"]{
+    color: var(--main-white-color);
+    background-color: var(--main-button-color);
+    border-radius: 2px;
+}
+
+
+input[type="file"],
+input[type="button"],
+input[type="submit"]{
+    cursor: pointer;
+}
+
+
+textarea::placeholder,
+input::placeholder{
+    color: var(--main-black-color);
+    opacity: .8;
+    transition: all 1s 0s;
+}
+
+
+label{
+    cursor: pointer;
+}
+
+textarea{
+    background-color: var(--main-black-opt01);
+    border: 0px;
+    resize:none;
+    border-radius: 2px;
+    padding: 10px;
+    color:var(--main-black-color);
+}
+
+
+.radio,
+.checkbox{
+    display: inline-block;
+    position: relative;
+    margin: 0px 4px;
+    width: 24px;
+    height: 24px;
+    line-height: normal;
+}
+
+html[theme="white"] .radio.invert,
+html[theme="white"] .checkbox.invert{
+    filter: invert(1);
+}
+
+
+.radio input,
+.checkbox input{
+    display: none;
+}
+
+
+.radio:before,
+.checkbox:before,
+.radio:after,
+.checkbox:after{
+    content: "";
+    display: inline-block;
+    transition: all .5s 0s;
+    border: 1px solid var(--main-black-color);
+}
+
+
+.radio:before,
+.checkbox:before{
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.radio:after,
+.checkbox:after{
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 2px;
+}
+
+
+
+.radio,
+.radio:before,
+.radio:after{
+    border-radius: 100%;
+}
+
+
+
+.radio:has(input[type="radio"]:checked):after,
+.checkbox:has(input[type="checkbox"]:checked):after{
+/*    opacity: 1;*/
+    background-color: var(--main-black-color);
+}
+
+
+.radio.button,
+.checkbox.button{
+    border-radius: 100px;
+    width: auto;
+    height: auto;
+    padding: 0px 20px;
+    transition: all .2s 0s;
+}
+
+.radio.button:after,
+.radio.button:before,
+.checkbox.button:before,
+.checkbox.button:after{
+    content: none;
+}
+
+.radio.button:has(input[type="radio"]:checked),
+.checkbox.button:has(input[type="checkbox"]:checked){
+    color:var(--main-white-color);
+    background-color: var(--main-black-color);
+}
+
+
+
+
+select,
+html[theme='white'] select{
+    background-color: transparent;
+    line-height: 40px;
+    padding: 10px 0px;
+    padding-left: 5px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+html[theme='black'] select{
+    filter: invert(1);
+}
+
+
+
+
+table{
+    display: inline-table;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: var(--main-black-color);
+    width: 100%;
+    overflow: hidden;
+}
+
+
+table tr th,
+table tr td{
+    cursor: pointer;
+    line-height: 36px;
+    transition: all .3s 0s;
+}
+
+table tr th{
+    line-height: 50px;
+}
+
+table tr td{
+    opacity: .6;
+}
+
+table tr:hover td{
+    opacity: 1;
+}
+
+table thead tr{
+    background-color: var(--main-table-color);
+    color:#ededed;
+}
+/* table thead tr th{} */
+
+table tbody tr{
+    border-bottom: 1px dashed var(--main-t03-color);
+/*    background-color: var(--main-bar-color);*/
+}
+
+table tbody tr td{
+    padding: 4px 0px;
+}
+
+
+table tbody tr:last-child{
+    border-bottom: 0px;
+}
+
+/* colspan 을 알수 없을 때 */
+table tr[data-colspan-max] {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+table tr[data-colspan-max] td{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+
+
+.button{
+    display: inline-block;
+    
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 14px;
+    
+    line-height: 40px;
+    padding: 0px 10px;
+    margin: 0px 2px;
+    
+    color: var(--main-black-color);
+    border: 1px solid var(--main-black-color);
+    background-color: transparent;
+    
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+
+.button > i{
+    vertical-align: baseline;
+}
+
+.fa-classic:before,
+.fa-regular:before,
+.fa-solid:before,
+.fa:before,
+.fas:before{
+    font-family: "Font Awesome 6 Free" !important;
+    margin-right: 4px;
+}
+
+.fa-solid:before,
+.fas:before {
+    font-weight: 900 !important;
+}
+
+.button[value]:before{
+    content: attr(value);
+    margin-right: 4px;
+}
+
+.button.full,
+.button.skew,
+.button.up,
+.button.left,
+.button.right,
+.button.down{
+    color: var(--main-black-color);
+    transition: all .5s 0s;
+}
+
+.button.full{
+    color: var(--main-white-color);
+}
+
+.button.full:after,
+.button.fade:after,
+.button.skew:after,
+.button.up:after,
+.button.left:after,
+.button.right:after,
+.button.down:after{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-black-color);
+    z-index: -1;
+    transition: all .5s 0s;
+}
+
+
+
+.button.up:after{ transform: translateY(100%); }
+.button.left:after{ transform: translateX(-100%); }
+.button.right:after{ transform: translateX(100%); }
+.button.down:after{ transform: translateY(-100%); }
+
+
+
+
+
+.button.fade:hover,
+.button.skew:hover,
+.button.up:hover,
+.button.left:hover,
+.button.right:hover,
+.button.down:hover{
+    color: var(--main-white-color);
+}
+
+.button.up:hover:after,
+.button.left:hover:after,
+.button.right:hover:after,
+.button.down:hover:after{
+    transform: none;
+}
+
+
+/* .button.skew{} */
+
+.button.skew:after{
+    width: 200%;
+    left: 50%;
+    transform: translateX(-50%) skewX(-45deg) translateX(-100%);
+}
+
+.button.right.skew:after{
+    transform: translateX(-50%) skewX(45deg) translateX(100%);
+}
+
+.button.skew:hover:after{
+    transform: translateX(-50%) skewX(-45deg);
+}
+.button.skew.right:hover:after{
+    transform: translateX(-50%) skewX(45deg);
+}
+
+
+
+/* .button.fade{} */
+
+.button.fade:before,
+.button.fade:after{
+    opacity: 0;
+}
+.button.fade:hover:before,
+.button.fade:hover:after{
+    opacity: 1;
+}
+
+
+
+.button[value].fold,
+.button[value].fold:hover{
+    color:var(--main-black-color);
+}
+
+.button[value].fold:before,
+.button[value].fold:hover:before{
+    content: none;
+}
+
+.button[value].fold:after,
+.button[value].fold.left:after,
+.button[value].fold.right:before{
+    content: attr(value);
+    margin: 0px;
+    position: static;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    color: var(--main-black-color);
+    transform: none;
+    overflow: clip;
+    white-space: nowrap;
+    max-width: 0px;
+    transition: all .5s 0s;
+    background-color: transparent;
+}
+
+
+.button[value].fold.right:after{
+    content: none;
+}
+
+
+.button[value].fold:hover:after,
+.button[value].fold.left:hover:after,
+.button[value].fold.right:hover:before{
+    color: var(--main-black-color);
+    transform: none;
+    max-width: 200px;
+    transition: all 1s 0s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,145 @@
+/* 프로젝트 상세 페이지 스타일 */
+.section {
+    padding: 60px 0px 100px;
+}
+
+.wrap {
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    padding: 7vw 0px;
+}
+.title .text {
+    font-size: 2.3rem;
+    font-weight: bold;
+    transition: all .3s 0s;
+    text-align: center;
+}
+.title .text span {
+    font-size: 18px;
+}
+.title .stack {
+    padding-top: 2rem;
+    transition: all .3s 0s;
+    opacity: .5;
+    text-align: center;
+}
+
+.list {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3vw;
+    padding-bottom: 7vw;
+}
+.list img {
+    width: 100%;
+    max-height: 500px;
+    max-height: 100%;
+    transition: all .3s 0s;
+}
+
+.explain {
+    text-align: left;
+    font-size: 1.3rem;
+    padding: 20px 5px;
+    transition: all .3s 0s;
+}
+
+.app {
+    width: 100%;
+    padding: 20px 0px;
+    transition: all .3s 0s;
+}
+
+.swiper {
+    margin-top: 20px;
+}
+.swiper .swiper-wrapper {
+    display: flex;
+}
+.swiper .swiper-wrapper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper .swiper-wrapper .swiper-slide img {
+    width: 100%;
+    height: auto;
+    /* max-height: 300px; */
+    object-fit: cover;
+}
+.swiper-pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.project-detail-custom-btn {
+    margin: 30px auto;
+    padding: 10px 20px;
+    display: block;
+    background-color: #0000004f;
+    backdrop-filter: blur(3px);
+    box-shadow: -1px 2px 5px #00000014;
+    border-radius: 5px;
+}
+
+/* 반응형 스타일 */
+@media only screen and (max-width: 1100px) {
+    .title .text {
+        font-size: 1.8rem;
+    }
+    .title .stack {
+        padding-top: 10px;
+    }
+    .explain {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .title .text {
+        font-size: 20px;
+    }
+    .title .text span {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .title {
+        text-align: left;
+        padding: 7vw 10px 2vw;
+    }
+    .list {
+        grid-template-columns: 1fr;
+        padding-bottom: 10vw;
+    }
+    .list img {
+        max-height: 350px;
+    }
+    .swiper .swiper-wrapper .swiper-slide img {
+        max-height: 550px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .title .text {
+        font-size: 17px;
+        line-height: 25px;
+    }
+    .title .text span {
+        font-size: 13px;
+    }
+    .title .stack {
+        font-size: 13px;
+    }
+    .list img {
+        max-height: 230px;
+    }
+    .explain {
+        padding: 0px 5px;
+    }
+}
